@@ -1,6 +1,8 @@
 from escuela.escuela import Escuela
 from estudiantes.estudiante import Estudiante
 from datetime import datetime
+from maestros.maestro import Maestro
+from materias.materia import Materia
 
 escuela = Escuela()
 
@@ -12,7 +14,7 @@ while True:
     print("4. Registrar grupo")
     print("5. Registrar horario")
     print("6. Mostrar estudiantes")
-    print("7. Mostrar maestros") #tarea
+    print("7. Mostrar maestros") 
     print("8. Mostrar materias") #tarea
     print("9. Mostrar grupos")
     print("10. Eliminar estudiante")
@@ -25,7 +27,7 @@ while True:
     if opcion == "1":
         print("\nSeleccionaste la opción para registrar un estudiante")
         
-        numero_control = escuela.generar_numero_control_estudiante()
+        
         nombre = input("ingresa el nombre del estudiante: ")
         apellido = input("ingresa el apellido del estudiante: ")
         curp = input("ingresa el curp del estudiante: ")
@@ -33,6 +35,7 @@ while True:
         mes = int(input("ingresa el mes de nacimiento del estudiante: "))
         dia = int(input("ingresa el día de nacimiento del estudiante: "))
         fecha_nacimiento = datetime(ano, mes, dia)
+        numero_control = escuela.generar_numero_control_estudiante()
         
         estudiante = Estudiante(numero_control=numero_control, nombre=nombre, apellido=apellido, curp=curp, fecha_nacimiento=fecha_nacimiento)
         escuela.registrar_estudiante(estudiante=estudiante)
@@ -41,17 +44,16 @@ while True:
     
     elif opcion == "2":
         print("\nSeleccionaste la opción registar maestro")
-        
-        numero_control = escuela.generar_numero_control_maestro
+         
         nombre = input("ingresa el nombre del maestro: ")
         apellido = input("ingresa el apellido del maestro: ")
         rfc = input("ingrese el rfc del maestro: ")
         sueldo = float(input("ingrese el sueldo del maestro: "))
-        ano = int(input("ingresa el año de nacimiento del maestro: "))
+        ano_nacimiento = int(input("ingresa el año de nacimiento del maestro: "))
+        numero_control = escuela.generar_numero_control_maestro(rfc=rfc, nombre=nombre, ano=ano_nacimiento)
         
-        numero_control = escuela.generar_numero_control_maestro(nombre=nombre, rfc=rfc, ano=ano)
-        print(numero_control)
-
+        maestro = Maestro(numero_control=numero_control, nombre=nombre, apellido=apellido, rfc=rfc, sueldo=sueldo, ano_nacimiento=ano_nacimiento)
+        escuela.registrar_maestro(maestro=maestro)
     
     elif opcion == "3":
         print("\nSeleccionaste la opción reagistrar materia")
@@ -60,8 +62,10 @@ while True:
         descripcion = input("ingrase la descripción de la materia: ")
         semestre = int(input("semestre: "))
         creditos = int(input("cantidad de creditos: "))
-        
         numero_control = escuela.generar_numero_control_materia(nombre=nombre, semestre=semestre, creditos=creditos)
+        
+        materia = Materia(id=id, nombre=nombre, descripcion=descripcion, semestre=semestre, creditos=creditos)
+        escuela.registrar_materia
     
     elif opcion == "4":
         pass
@@ -73,6 +77,13 @@ while True:
         print("\nSeleccionaste la opción mostrar estudiantes")
         escuela.listar_estudiantes()
     
+    elif opcion == "7":
+        print("\nSeleccionaste la opción mostrar maestros")
+        escuela.listar_maestros()
+        
+    elif opcion == "8":
+        print("\nSeleccionaste la opción mostrar materias")
+        escuela.listar_materias()
     
     
     elif opcion == "10":

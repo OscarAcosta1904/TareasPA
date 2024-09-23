@@ -1,5 +1,5 @@
 class Materia:
-    id: int #"MT{ultimos 2 digitos del nombre}{semestre}{cantidad creditos}{random(1, 1000)}": 
+    id: int 
     nombre: str
     descripcion: str
     semestre: int
@@ -11,3 +11,7 @@ class Materia:
         self.descripcion = descripcion
         self.semestre = semestre
         self.creditos = creditos 
+        
+    def mostrar_info_materia(self):
+        info = f"id: {self.id}\nNombre: {self.nombre}\nDescripción: {self.descripcion}\nSemestre: {self.semestre}\nCreditos: {self.creditos}"
+        return info
