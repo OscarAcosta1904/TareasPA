@@ -8,4 +8,4 @@ class Grupo:
     estudiantes: List[Estudiante] = []
     maestros: List[Maestro] = []
     materias : list[Materia] = []
-    tipo: chr
+    tipo: chr   

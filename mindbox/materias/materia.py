@@ -4,3 +4,10 @@ class Materia:
     descripcion: str
     semestre: int
     creditos: int
+    
+    def __init__(self, id, nombre, descripcion, semestre, creditos):
+        self.id = id
+        self.nombre = nombre
+        self.descripcion = descripcion
+        self.semestre = semestre
+        self.creditos = creditos 
