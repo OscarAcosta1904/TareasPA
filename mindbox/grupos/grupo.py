@@ -9,3 +9,6 @@ class Grupo:
     maestros: List[Maestro] = []
     materias : list[Materia] = []
     tipo: chr   
+    
+    def __init__(self):
+        pass

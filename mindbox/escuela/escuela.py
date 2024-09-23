@@ -40,6 +40,21 @@ class Escuela:
     def registrar_materia(self, materia: Materia):
         self.lista_materias.append(materia)
         
+    def listar_estudiantes(self):
+        print("_____ESTUDIANTES_____")
+        
+        for estudiante in self.lista_estudiantes:
+            print(estudiante.mostrar_info_estudiante())
+            
+    def eliminar_estudiante(self, numero_control: str):
+        for estudiante in self.lista_estudiantes:
+            if estudiante.numero_control == numero_control:
+                self.lista_estudiantes.remove()
+                print("Estudiante eliminado")
+                return
+            
+        print(f"No se encontró el estudiante con número de control: {numero_control}")        
+        
     def generar_numero_control_materia(self, nombre, semestre, creditos):
         letras = nombre[-2:].upper()
         aleatorio = randint(1, 1000)
