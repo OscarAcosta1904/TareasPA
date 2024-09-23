@@ -26,7 +26,6 @@ while True:
         print("\nSeleccionaste la opción para registrar un estudiante")
         
         numero_control = escuela.generar_numero_control_estudiante()
-        print(numero_control)
         nombre = input("ingresa el nombre del estudiante: ")
         apellido = input("ingresa el apellido del estudiante: ")
         curp = input("ingresa el curp del estudiante: ")
@@ -43,6 +42,7 @@ while True:
     elif opcion == "2":
         print("\nSeleccionaste la opción registar maestro")
         
+        numero_control = escuela.generar_numero_control_maestro
         nombre = input("ingresa el nombre del maestro: ")
         apellido = input("ingresa el apellido del maestro: ")
         rfc = input("ingrese el rfc del maestro: ")
@@ -62,7 +62,6 @@ while True:
         creditos = int(input("cantidad de creditos: "))
         
         numero_control = escuela.generar_numero_control_materia(nombre=nombre, semestre=semestre, creditos=creditos)
-        print(numero_control)
     
     elif opcion == "4":
         pass
@@ -73,7 +72,7 @@ while True:
     elif opcion == "6":
         print("\nSeleccionaste la opción mostrar estudiantes")
         escuela.listar_estudiantes()
-        break
+    
     
     
     elif opcion == "10":
