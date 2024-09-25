@@ -15,7 +15,7 @@ while True:
     print("5. Registrar horario")
     print("6. Mostrar estudiantes")
     print("7. Mostrar maestros") 
-    print("8. Mostrar materias") #tarea
+    print("8. Mostrar materias") 
     print("9. Mostrar grupos")
     print("10. Eliminar estudiante")
     print("11. Eliminar maestro") #tarea
@@ -62,10 +62,10 @@ while True:
         descripcion = input("ingrase la descripción de la materia: ")
         semestre = int(input("semestre: "))
         creditos = int(input("cantidad de creditos: "))
-        numero_control = escuela.generar_numero_control_materia(nombre=nombre, semestre=semestre, creditos=creditos)
+        id = escuela.generar_numero_control_materia(nombre=nombre, semestre=semestre, creditos=creditos)
         
         materia = Materia(id=id, nombre=nombre, descripcion=descripcion, semestre=semestre, creditos=creditos)
-        escuela.registrar_materia
+        escuela.registrar_materia(materia=materia)
     
     elif opcion == "4":
         pass
@@ -88,8 +88,18 @@ while True:
     
     elif opcion == "10":
         print("\nSeleccionaste la opción para eliminar un estudiante")
-        numero_control = input("Ingresa el número de control del estudiante a eliminar")
+        numero_control = input("Ingresa el número de control del estudiante a eliminar: ")
         escuela.eliminar_estudiante(numero_control=numero_control)
+        
+    elif opcion == "11":
+        print("\nSeleccionaste la opción eliminar un maestro")
+        numero_control = input("Ingresa el número de control del maestro a eliminar: ")
+        escuela.eliminar_maestro(numero_control=numero_control)
+    
+    elif opcion == "12":
+        print("\nSeleccionaste la opción eliminar una materia")
+        id = input("Ingresa el id de la materia a eliminar: ")
+        
     
     elif opcion == "13":
         print("\nadios")
