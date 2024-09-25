@@ -18,8 +18,8 @@ while True:
     print("8. Mostrar materias") 
     print("9. Mostrar grupos")
     print("10. Eliminar estudiante")
-    print("11. Eliminar maestro") #tarea
-    print("12. Eliminar materia") #tarea
+    print("11. Eliminar maestro") 
+    print("12. Eliminar materia") 
     print("13. Salir")
     
     opcion = input("Ingresa una opción para continuar: ")
@@ -84,7 +84,15 @@ while True:
     elif opcion == "8":
         print("\nSeleccionaste la opción mostrar materias")
         escuela.listar_materias()
+        
+    elif opcion == "7":
+        pass
     
+    elif opcion == "8":
+        pass
+    
+    elif opcion == "9":
+        pass
     
     elif opcion == "10":
         print("\nSeleccionaste la opción para eliminar un estudiante")
