@@ -3,6 +3,8 @@ from estudiantes.estudiante import Estudiante
 from grupos.grupo import Grupo
 from maestros.maestro import Maestro
 from materias.materia import Materia
+from carrera.carrera import Carrera
+from semestre.semestre import Semestre
 from datetime import datetime
 from random import randint
 
@@ -11,6 +13,8 @@ class Escuela:
     lista_grupos: List[Grupo] = []
     lista_maestros: List[Maestro] = []
     lista_materias: List[Materia] = []
+    lista_carreras: List[Carrera] = []
+    lista_semestres: List[Semestre] = []
     
     def registrar_estudiante(self, estudiante: Estudiante):
         self.lista_estudiantes.append(estudiante)
@@ -46,6 +50,28 @@ class Escuela:
         
         numero_control = f"{letras}{semestre}{creditos}{aleatorio}"
         return numero_control
+    
+    def registrar_carrera(self, carrera: Carrera):
+        self.lista_carreras.append(carrera)
+    
+    def registrar_semestre(self, semestre: Semestre):
+        id_carrera = semestre.id
+        
+        for carrera in self.lista_carreras:
+            if carrera.matricula == id_carrera:
+                carrera.registrar_semestre(semestre=semestre)
+                break
+        
+        self.lista_semestres.append(semestre)
+        
+    def registrar_grupo(self, grupo: Grupo):
+        self.lista_grupos.append(grupo)
+        id_semestre = grupo.id_semestre
+        
+        for semestre in self.lista_semestres:
+            if id_semestre == semestre.id:
+                semestre.registrar_grupo_semestre(grupo=grupo)
+                break
         
     def listar_estudiantes(self):
         print("_____ESTUDIANTES_____")
@@ -62,10 +88,25 @@ class Escuela:
         for materia in self.lista_materias:
             print(materia.mostrar_info_materia())
             
+    def listar_carreras(self):
+        print("_____CARRERAS_____")
+        for carrera in self.lista_carreras:
+            print(carrera.mostrar_info_carrera())
+            
+    def listar_semestres(self):
+        print("_____SEMESTRES_____")
+        for semestre in self.lista_semestres:
+            print(semestre.mostrar_info_semestre())
+            
+    def listar_grupos(self):
+        print("_____GRUPOS_____")
+        for grupo in self.lista_grupos:
+            print(grupo.mostrar_info_grupo())
+            
     def eliminar_estudiante(self, numero_control: str):
         for estudiante in self.lista_estudiantes:
             if estudiante.numero_control == numero_control:
-                self.lista_estudiantes.remove()
+                self.lista_estudiantes.remove(estudiante)
                 print("Estudiante eliminado")
                 return
             
@@ -74,7 +115,7 @@ class Escuela:
     def eliminar_maestro(self, numero_control: str):
         for maestro in self.lista_maestros:
             if maestro.numero_control == numero_control:
-                self.lista_maestros.remove()
+                self.lista_maestros.remove(maestro)
                 print("Maestro eliminado")
                 return
             
@@ -83,8 +124,8 @@ class Escuela:
     def eliminar_materia(self, id: str):
         for materia in self.lista_materias:
             if materia.id == id:
-                self.lista_maestros.remove()
-                print("Materia eliminado")
+                self.lista_materias.remove(materia)
+                print("Materia eliminada")
                 return
             
         print(f"No se encontró la materia con el id: {id}")
