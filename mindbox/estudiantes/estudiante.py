@@ -1,16 +1,13 @@
 from datetime import datetime
+from usuario.usuario import Usuario
+from usuario.utils.roles import Rol
 
-class Estudiante:
-    numero_control: str
-    nombre: str
-    apellido: str
+class Estudiante(Usuario):
     curp: str
     fecha_nacimiento: datetime
     
-    def __init__(self, numero_control: str, nombre: str, apellido: str, curp: str, fecha_nacimiento: datetime):
-        self.numero_control = numero_control
-        self.nombre = nombre
-        self.apellido = apellido
+    def __init__(self, numero_control: str, nombre: str, apellido: str, curp: str, fecha_nacimiento: datetime, contrasenia: str):
+        super().__init__(nombre=nombre, numero_control=numero_control, apellido=apellido, contrasenia=contrasenia, rol=Rol.ESTUDIANTE) 
         self.curp = curp
         self.fecha_nacimiento = fecha_nacimiento
         

@@ -115,8 +115,10 @@ class Menu:
                 dia = int(input("ingresa el día de nacimiento del estudiante: "))
                 fecha_nacimiento = datetime(ano, mes, dia)
                 numero_control = self.escuela.generar_numero_control_estudiante()
+                
+                contrasenia = input("Ingresa la contraseña del estudiante: ")
 
-                estudiante = Estudiante(numero_control=numero_control, nombre=nombre, apellido=apellido, curp=curp, fecha_nacimiento=fecha_nacimiento)
+                estudiante = Estudiante(numero_control=numero_control, nombre=nombre, apellido=apellido, curp=curp, fecha_nacimiento=fecha_nacimiento, contrasenia=contrasenia)
                 self.escuela.registrar_estudiante(estudiante=estudiante)
 
 
@@ -130,8 +132,10 @@ class Menu:
                 sueldo = float(input("ingrese el sueldo del maestro: "))
                 ano_nacimiento = int(input("ingresa el año de nacimiento del maestro: "))
                 numero_control = self.escuela.generar_numero_control_maestro(rfc=rfc, nombre=nombre, ano=ano_nacimiento)
+                
+                contrasenia = input("Ingresa la contraseña del maestro: ")
 
-                maestro = Maestro(numero_control=numero_control, nombre=nombre, apellido=apellido, rfc=rfc, sueldo=sueldo, ano_nacimiento=ano_nacimiento)
+                maestro = Maestro(numero_control=numero_control, nombre=nombre, apellido=apellido, rfc=rfc, sueldo=sueldo, ano_nacimiento=ano_nacimiento, contrasenia=contrasenia)
                 self.escuela.registrar_maestro(maestro=maestro)
 
             elif opcion == "3":

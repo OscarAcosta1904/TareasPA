@@ -1,15 +1,13 @@
-class Maestro:
-    numero_control: str
-    nombre: str
-    apellido: str
+from usuario.usuario import Usuario
+from usuario.utils.roles import Rol
+
+class Maestro(Usuario):
     rfc: str
     sueldo: float
     ano_nacimiento: int
     
-    def __init__(self, numero_control: str,nombre: str, apellido: str, rfc: str, sueldo: float, ano_nacimiento: int):
-        self.numero_control = numero_control
-        self.nombre = nombre
-        self.apellido = apellido
+    def __init__(self, numero_control: str,nombre: str, apellido: str, rfc: str, sueldo: float, ano_nacimiento: int, contrasenia: str):
+        super().__init__(nombre=nombre, numero_control=numero_control, apellido=apellido, contrasenia=contrasenia, rol=Rol.MAESTRO)
         self.rfc = rfc
         self.sueldo = sueldo
         self.ano_nacimiento = ano_nacimiento
