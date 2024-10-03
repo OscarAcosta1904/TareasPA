@@ -7,7 +7,11 @@ class Estudiante(Usuario):
     fecha_nacimiento: datetime
     
     def __init__(self, numero_control: str, nombre: str, apellido: str, curp: str, fecha_nacimiento: datetime, contrasenia: str):
-        super().__init__(nombre=nombre, numero_control=numero_control, apellido=apellido, contrasenia=contrasenia, rol=Rol.ESTUDIANTE) 
+        super().__init__(nombre=nombre,
+                         numero_control=numero_control,
+                         apellido=apellido,
+                         contrasenia=contrasenia,
+                         rol=Rol.ESTUDIANTE) 
         self.curp = curp
         self.fecha_nacimiento = fecha_nacimiento
         

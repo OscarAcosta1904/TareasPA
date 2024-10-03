@@ -5,6 +5,7 @@ from maestros.maestro import Maestro
 from materias.materia import Materia
 from carrera.carrera import Carrera
 from semestre.semestre import Semestre
+# from coordinador.coordinador import Coordinador
 from datetime import datetime
 from random import randint
 
@@ -15,6 +16,7 @@ class Escuela:
     lista_materias: List[Materia] = []
     lista_carreras: List[Carrera] = []
     lista_semestres: List[Semestre] = []
+    # lista_coordinadores: List[Coordinador] = []
     
     def registrar_estudiante(self, estudiante: Estudiante):
         self.lista_estudiantes.append(estudiante)
@@ -72,6 +74,9 @@ class Escuela:
             if id_semestre == semestre.id:
                 semestre.registrar_grupo_semestre(grupo=grupo)
                 break
+            
+    # def registrar_coordinador(self, coordinador: Coordinador):
+    #     self.lista_coordinadores.append(coordinador)
         
     def listar_estudiantes(self):
         print("_____ESTUDIANTES_____")
