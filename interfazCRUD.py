@@ -8,7 +8,7 @@ def show():
     print("hola")
 
 def mostrar():
-    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="pruebameca")
+    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="biblioteca")
     micursos=mysqlC.cursor()
     micursos.execute("select * from usuarios")
     lista = micursos.fetchall()
@@ -22,7 +22,7 @@ def add():
     correoAdd = email.get()
     contraAdd = password.get()
     idAdd = identificador.get()
-    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="pruebameca")
+    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="biblioteca")
     micursos=mysqlC.cursor()
     try:
         micursos.execute(f"insert into usuarios(id,nombre,correo,contraseña) values({idAdd},'{usuarioAdd}','{correoAdd}','{contraAdd}')")
@@ -48,7 +48,7 @@ def edit():
     correoAdd = email.get()
     contraAdd = password.get()
     idAdd = identificador.get()
-    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="pruebameca")
+    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="biblioteca")
     micursos=mysqlC.cursor()
     try:
         micursos.execute(f"UPDATE usuarios set nombre='{usuarioAdd}',correo='{correoAdd}',contraseña='{contraAdd}' where id={idAdd} ")
@@ -66,7 +66,7 @@ def edit():
 
 def delete():
     idAdd = identificador.get()
-    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="pruebameca")
+    mysqlC = mysql.connector.connect(host="localhost",user="root",password="",database="biblioteca")
     micursos=mysqlC.cursor()
     try:
         micursos.execute(f"DELETE FROM USUARIOS WHERE id={idAdd}")

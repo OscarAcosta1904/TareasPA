@@ -11,13 +11,13 @@ def verificar_usuario(correo, contrasena):
             host='localhost',      
             user='root',          
             password='',  
-            database='meca'    
+            database='biblioteca'    
             )
  
         cursor = conn.cursor()
  
         cursor.execute('''
-            SELECT * FROM usuarios WHERE correo = %s AND contraseña = %s
+            SELECT * FROM usuarios3 WHERE correo = %s AND contraseña = %s
         ''', (correo, contrasena))
  
         usuario = cursor.fetchone()
@@ -33,6 +33,13 @@ def verificar_usuario(correo, contrasena):
     finally:
         if conn.is_connected():
             conn.close()
+            
+def login():
+    verificar_usuario()
+    
+    ventana_login.withdraw()
+    
+    menu_administrador = tk.Toplevel(ventana_login).title("Menú Administrador")
 
 ventana_login = tk.Tk()
 ventana_login.title("login")
@@ -45,5 +52,8 @@ entry_correo = tk.Entry(ventana_login).place(x=35, y=60)
 
 label_contrasena = tk.Label(ventana_login, text="Contraseña:", font=("Arial")).place(x=35, y=90)
 entry_contrasena = tk.Entry(ventana_login).place(x=35, y=110)
+
+
+loginButton = tk.Button(ventana_login,text="login",command=login,height=2, width=6, font=("Arial",12)).place(x=60,y=140)
 
 ventana_login.mainloop()
