@@ -3,7 +3,6 @@ import mysql.connector
 from tkinter import ttk,messagebox
 from tkinter import *
 
-
 def show():
     print("hola")
 
@@ -112,6 +111,21 @@ def obtenerRe(event):
     precio.insert(0,seleccion["Precio"])
 
 def menu_empleados():
+    
+    def filtro():
+        ventana_filtro = tk.Toplevel(root)
+        ventana_filtro.title("Filtro")
+        
+        labelFiltro = tk.Label(ventana_filtro, text="Fecha:", font=("Arial", 12))
+        labelFiltro.place(x=50,y=50)
+        
+        def regresar():
+            ventana_filtro.destroy()
+            root.deiconify()
+            
+        boton_regresar = tk.Button(ventana_filtro, text="Regresar", command=regresar)
+        boton_regresar.place(x=600,y=80)
+    
     root = tk.Toplevel()
     root.title("Registro Libros")
     root.geometry("1200x500")
@@ -165,6 +179,7 @@ def menu_empleados():
     tk.Button(root,text="Crear",command=adde, height=5, width=10, font=("Arial",12)).place(x=600,y=80)
     tk.Button(root,text="Editar",command=edite, height=5, width=10, font=("Arial",12)).place(x=750,y=80)
     tk.Button(root,text="Eliminar",command=deletee, height=5, width=10, font=("Arial",12)).place(x=900,y=80)
+    tk.Button(root,text="Filtrar",command=filtro, height=5, width=10, font=("Arial",12)).place(x=1050,y=80)
 
     columnas = ("Id","Titulo", "Autor","Editorial","Año de publicación","Precio")
     listbox = ttk.Treeview(root,columns=columnas,show="headings")
