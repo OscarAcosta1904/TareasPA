@@ -122,6 +122,7 @@ def menu_administrador():
     #     ventana_login.deiconify()
         
     root = tk.Toplevel()
+    root.title("Registro de Empleados")
     root.geometry("1200x500")
     label1 = tk.Label(root,text="Registro de empleados", fg="red",font=("Arial",28))
     label1.place(x=170,y=0)

@@ -6,11 +6,11 @@ from menu.menu_empleado import menu_empleados
 
 def validar(usuario):
     if usuario[5] == "empleado":
-        ventana_login.withdraw()
+        # ventana_login.withdraw()
         menu_empleados()
         
     else:
-        ventana_login.withdraw()
+        # ventana_login.withdraw()
         print(":(")
         menu_administrador()
 

@@ -113,6 +113,7 @@ def obtenerRe(event):
 
 def menu_empleados():
     root = tk.Toplevel()
+    root.title("Registro Libros")
     root.geometry("1200x500")
 
     label1 = tk.Label(root,text="Registro de libros", fg="red",font=("Arial",28)).place(x=170,y=0)
