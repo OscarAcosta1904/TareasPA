@@ -110,21 +110,73 @@ def obtenerRe(event):
     ano_publicacion.insert(0,seleccion["Año de publicación"])
     precio.insert(0,seleccion["Precio"])
 
-def menu_empleados():
-    
-    def filtro():
-        ventana_filtro = tk.Toplevel(root)
-        ventana_filtro.title("Filtro")
+def filtro(ventana):
+    def aplicar_filtro():
+        filtro = entryFiltro.get()
         
-        labelFiltro = tk.Label(ventana_filtro, text="Fecha:", font=("Arial", 12))
-        labelFiltro.place(x=50,y=50)
+        try:
+            conn = mysql.connector.connect(
+                host='localhost',      
+                user='root',          
+                password='',  
+                database='biblioteca'    
+            )
+ 
+            # cursor = conn.connect()
+            cursor = conn.cursor()
+ 
+            cursor.execute('''
+                SELECT * FROM libros WHERE ano_publicacion = %s 
+            ''', (filtro,))
+ 
+            lista = cursor.fetchall()
+            listbox.delete(*listbox.get_children())
+ 
+            if lista:
+                for i,(id,titulo,autor,editorial,ano_publicacion,precio) in enumerate(lista,start=1):
+                    listbox.insert("","end",values=(id,titulo,autor,editorial,ano_publicacion,precio))
+                    conn.close()
+                  
+            else:
+                messagebox.showerror("Error", "Libros no encontrados.")
+                return
+        except mysql.connector.Error as err:
+            messagebox.showerror("Error de conexión", f"Error: {err}")
+   
+        finally:
+            if conn.is_connected():
+                conn.close()
+               
+    ventana_filtro = tk.Toplevel(ventana)
+    ventana_filtro.title("Filtro")
+    ventana_filtro.geometry("1200x300")
         
-        def regresar():
+    labelTitulo = tk.Label(ventana_filtro,text="Filtro de Libros", fg="red",font=("Arial",14))
+    labelTitulo.place(x=50,y=0)
+    labelFiltro = tk.Label(ventana_filtro, text="Fecha:", font=("Arial", 12))
+    labelFiltro.place(x=5,y=50)
+    entryFiltro = tk.Entry(ventana_filtro)
+    entryFiltro.place(x=65,y=50)
+        
+    columnas = ("Id","Titulo", "Autor","Editorial","Año de publicación","Precio")
+    listbox = ttk.Treeview(ventana_filtro,columns=columnas,show="headings")
+
+    for col in columnas:
+        listbox.heading(col, text=col)
+        listbox.grid(row=1, column=0, columnspan=1)
+        listbox.place(x=0, y=100)
+        
+    def regresar():
             ventana_filtro.destroy()
-            root.deiconify()
+            ventana.deiconify()
             
-        boton_regresar = tk.Button(ventana_filtro, text="Regresar", command=regresar)
-        boton_regresar.place(x=600,y=80)
+    boton_filtrar = tk.Button(ventana_filtro, text="Filtrar", command=aplicar_filtro)
+    boton_filtrar.place(x=200,y=30)
+        
+    boton_regresar = tk.Button(ventana_filtro, text="Regresar", command=regresar)
+    boton_regresar.place(x=200,y=60)
+
+def menu_empleados():
     
     root = tk.Toplevel()
     root.title("Registro Libros")
@@ -179,7 +231,7 @@ def menu_empleados():
     tk.Button(root,text="Crear",command=adde, height=5, width=10, font=("Arial",12)).place(x=600,y=80)
     tk.Button(root,text="Editar",command=edite, height=5, width=10, font=("Arial",12)).place(x=750,y=80)
     tk.Button(root,text="Eliminar",command=deletee, height=5, width=10, font=("Arial",12)).place(x=900,y=80)
-    tk.Button(root,text="Filtrar",command=filtro, height=5, width=10, font=("Arial",12)).place(x=1050,y=80)
+    tk.Button(root,text="Filtrar",command=lambda: filtro(ventana=root), height=5, width=10, font=("Arial",12)).place(x=1050,y=80)
 
     columnas = ("Id","Titulo", "Autor","Editorial","Año de publicación","Precio")
     listbox = ttk.Treeview(root,columns=columnas,show="headings")

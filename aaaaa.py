@@ -122,21 +122,23 @@ def filtro():
                 database='biblioteca'    
             )
  
-            cursor = conn.connect()
+            # cursor = conn.connect()
             cursor = conn.cursor()
  
             cursor.execute('''
-                SELECT * FROM usuarios3 WHERE ano_nacimiento = %s 
-            ''', (filtro))
+                SELECT * FROM libros WHERE ano_publicacion = %s 
+            ''', (filtro,))
  
-            usuario = cursor.fetchone()
+            lista = cursor.fetchall()
+            listbox.delete(*listbox.get_children())
  
-            if usuario:
-                messagebox.showinfo("Login exitoso", f"Bienvenido {usuario[1]}")
-                # validar(usuario=usuario)
+            if lista:
+                for i,(id,titulo,autor,editorial,ano_publicacion,precio) in enumerate(lista,start=1):
+                    listbox.insert("","end",values=(id,titulo,autor,editorial,ano_publicacion,precio))
+                    conn.close()
                   
             else:
-                messagebox.showerror("Error", "Usuario o contraseña no encontrados.")
+                messagebox.showerror("Error", "Libros no encontrados.")
                 return
         except mysql.connector.Error as err:
             messagebox.showerror("Error de conexión", f"Error: {err}")
