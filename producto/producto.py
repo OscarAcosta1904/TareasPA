@@ -1,3 +1,6 @@
+from random import randint
+from datetime import datetime, date
+
 class Producto:
     id: int
     nombre: str
@@ -10,11 +13,20 @@ class Producto:
         self.precio = precio
         self.cantidad = cantidad
         
+def generar_id(self, nombre, precio):
+    letras_nombre = nombre[:2]
+    letras_nombre.upper()
+    dia = datetime.now().day
+    aleatorio = randint(1, 100)
+    
+    id = f"{letras_nombre}{dia}{aleatorio}"
+    
+    return id 
+    
+        
 def calcular_valor_total():
     pass
 
 def mostrar_detalles():
     pass
 
-def agregar_producto():
-    pass

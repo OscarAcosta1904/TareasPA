@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from tkinter import *
 from producto.producto import calcular_valor_total, mostrar_detalles, agregar_producto
+from producto.producto import Producto
+from typing import List
 
 root = tk.Tk()
 root.title("Menú")
