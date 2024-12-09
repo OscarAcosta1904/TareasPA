@@ -1,5 +1,5 @@
 from random import randint
-from datetime import datetime, date
+from datetime import datetime
 
 class Producto:
     id: int
@@ -24,9 +24,12 @@ def generar_id(self, nombre, precio):
     return id 
     
         
-def calcular_valor_total():
+def calcular_valor_total(): #Calcula el valor total del inventario para el producto 
     pass
 
-def mostrar_detalles():
+def mostrar_detalles(): #Devuelve los detalles del producto como un str ID, nombre, precio, cantidad, valor total en inventario
+    pass
+
+def editar(): #Editar detalles del producto existente
     pass
 
