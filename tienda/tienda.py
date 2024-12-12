@@ -43,8 +43,6 @@ class Tienda:
                 
     def editar_producto(ide, nombre, precio, cantidad):
         
-        global listbox
-        
         ideAdd = ide.get()
         nombreAdd = nombre.get()
         precioAdd = precio.get()
@@ -62,6 +60,8 @@ class Tienda:
             
         messagebox.showerror("Error", "Producto no encontrado")
         return None
+    
+    #No sé cómo hacer para definir la variable listbox para poder actualizar la tabla inmediatamente después de editar los datos de la lista :(
     
             
         
