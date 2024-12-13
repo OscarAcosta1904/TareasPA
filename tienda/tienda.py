@@ -19,37 +19,28 @@ class Tienda:
         Tienda.lista_productos.append(chocolate)
     
     def agregar_producto(nombre, precio, cantidad):
-        nombreAdd = nombre.get()
-        precioAdd = precio.get()
-        cantidadAdd = cantidad.get()
-        
-        ide = Producto.generar_id(nombreAdd)
-        
-        producto = Producto(ide=ide, nombre=nombreAdd, precio=precioAdd, cantidad=cantidadAdd)
-        
-        Tienda.lista_productos.append(producto) 
-        
-        nuevo_producto = producto
-        
-        for producto in Tienda.lista_productos:
-            if nuevo_producto == producto:
-                messagebox.showinfo("informacion", "Producto agregado correctamente")
+        try:
+            nombreAdd = nombre.get().strip()
+            precioAdd = precio.get().strip()
+            cantidadAdd = cantidad.get().strip()
+
+            if not nombreAdd or not precioAdd.isdigit() or not cantidadAdd.isdigit():
+                raise MiError("Datos inválidos. Ingresa nombre y cantidades válidas.")
+
+            ide = Producto.generar_id(nombreAdd)
+            producto = Producto(ide=ide, nombre=nombreAdd, precio=precioAdd, cantidad=cantidadAdd)
+
+            for p in Tienda.lista_productos:
+                if p.nombre == producto.nombre:
+                    raise MiError(f"El producto '{producto.nombre}' ya existe en la tienda.")
+
+            Tienda.lista_productos.append(producto)
+            messagebox.showinfo("Información", f"Producto '{producto.nombre}' agregado correctamente.")
+
+        except MiError as e:
+            messagebox.showerror("Error", e.mensaje)
                 
-    def buscar_producto():
-        pass
-    
-            
-        
-        
-
-
-        
-    
-    
-
-            
-        
-        
-    
-
-    
+class MiError(Exception):
+    def __init__(self, mensaje):
+        self.mensaje = mensaje
+        super().__init__(self.mensaje)
